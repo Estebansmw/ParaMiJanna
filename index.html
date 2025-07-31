@@ -11,13 +11,18 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, rgba(255,238,248,0.3) 0%, rgba(248,232,255,0.3) 50%, rgba(255,232,240,0.3) 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
+     body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, rgba(255,238,248,0.3) 0%, rgba(248,232,255,0.3) 50%, rgba(255,232,240,0.3) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    margin: 0;      /* Agrega esta línea */
+    padding: 0;     /* Agrega esta línea */
+    width: 100vw;   /* Agrega esta línea */
+    height: 100vh;  /* Agrega esta línea */
+}
+
 
         /* COLLAGE DE FONDO DINÁMICO */
         .photo-collage {
@@ -76,18 +81,18 @@
         }
 
         /* CONTENIDO PRINCIPAL - MÁS TRANSPARENTE */
-        .main-content {
-            position: relative;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(8px);
-            border-radius: 30px;
-            margin: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(214, 51, 132, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
+    .main-content {
+        position: relative;
+        z-index: 10;
+        margin: 8px;
+        padding: 10px 12px;
+        background: rgba(255, 255, 255, 0.25); /* Más transparente */
+        border-radius: 16px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+        backdrop-filter: blur(3px);
+    }
+        
+        /* ESTILOS DEL ENCABEZADO Y BOTONES */
         .header {
             text-align: center;
             margin-bottom: 40px;
@@ -383,6 +388,11 @@
             setInterval(repositionPhotos, 30000);
         });
 
+        // Reposicionar en resize
+        window.addEventListener('resize', repositionPhotos);
+    </script>
+</body>
+</html>
         // Reposicionar en resize
         window.addEventListener('resize', repositionPhotos);
     </script>
