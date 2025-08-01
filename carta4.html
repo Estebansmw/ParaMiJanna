@@ -3,75 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espera</title>
+    <title>Carta personal mia</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f8e1e7;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
+            padding: 20px;
+        }
+        
+        .carta-container {
+            background: #fff;
+            max-width: 800px;
+            width: 100%;
+            padding: 60px 50px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
             overflow: hidden;
         }
-
-        .heart-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-        }
-
-        .heart {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            animation: pulse 1.5s infinite;
-        }
-
-        .heart::before,
-        .heart::after {
+        
+        .carta-container::before {
             content: '';
             position: absolute;
             top: 0;
-            width: 100px;
-            height: 160px;
-            background: #e94d75;
-            border-radius: 50px 50px 0 0;
-        }
-
-        .heart::before {
-            left: 100px;
-            transform: rotate(-45deg);
-            transform-origin: 0 100%;
-        }
-
-        .heart::after {
             left: 0;
-            transform: rotate(45deg);
-            transform-origin: 100% 100%;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
         }
-
-        .text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #1f0d0d;
-            font-size: 2.5em;
-            font-weight: bold;
-            z-index: 10;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        
+        .fecha {
+            text-align: right;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 30px;
+            font-size: 16px;
         }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        
+        .saludo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .contenido {
+            line-height: 1.8;
+            color: #34495e;
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+        
+        .parrafo {
+            margin-bottom: 25px;
+            text-indent: 30px;
+        }
+        
+        .destacado {
+            font-weight: 600;
+            color: #e74c3c;
+            font-style: italic;
+        }
+        
+        .despedida {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .despedida-texto {
+            font-family: 'Dancing Script', cursive;
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .firma {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: #e74c3c;
+            font-weight: 700;
+        }
+        
+        .decoracion {
+            text-align: center;
+            margin: 30px 0;
+            color: #bdc3c7;
+            font-size: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .carta-container {
+                padding: 40px 30px;
+                margin: 10px;
+            }
+            
+            .saludo {
+                font-size: 28px;
+            }
+            
+            .contenido {
+                font-size: 16px;
+            }
+            
+            .parrafo {
+                text-indent: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="carta-container">
+        <div class="fecha">
+            1 de Agosto, 2025
+        </div>
+        
+        <div class="saludo">
+            Mi querida y hermosa Janna Rosero
+        </div>
+        
+        <div class="contenido">
+            <div class="parrafo">
+                Mientras escribo estas líneas, mi corazón se llena de una calidez que solo tú sabes despertar en mí. Han pasado 4 meses desde que llegaste a mi vida, y cada día me sorprendo más de lo afortunado que soy de tenerte a mi lado.
+            </div>
+            
+            <div class="parrafo">
+                Recuerdo perfectamente el momento en que te conocí [describe el momento]. Desde ese instante, supe que había algo especial en ti, algo que hacía que mi mundo cobrara nuevos colores y que cada amanecer tuviera un significado diferente.
+            </div>
+            
+            <div class="parrafo">
+                <span class="destacado">Eres mucho más de lo que jamás pude imaginar.</span> Tu sonrisa ilumina mis días más grises, tu risa es la melodía más hermosa que he escuchado, y tu forma de ver la vida me inspira a ser una mejor persona cada día.
+            </div>
+            
+            <div class="decoracion">❤ ❤ ❤</div>
+            
+            <div class="parrafo">
+                Quiero que sepas que [mensaje personal específico]. Cada momento contigo es un regalo que atesoro en mi corazón, desde nuestras conversaciones más profundas hasta esos silencios cómodos que solo compartimos nosotros.
+            </div>
+            
+            <div class="parrafo">
+                Gracias por [razones específicas por las que estás agradecido]. Gracias por ser mi compañera, mi confidente, mi mejor amiga y el amor de mi vida. Gracias por creer en nosotros y por construir conmigo este hermoso camino que apenas comienza.
+            </div>
+            
+            <div class="parrafo">
+                <span class="destacado">Te amo</span> no solo por quien eres, sino por quien me ayudas a ser cuando estoy contigo. Te amo por tu [cualidades específicas de ella], por tu manera única de [algo que hace especial], y por todos esos pequeños detalles que hacen que seas perfecta para mí.
+            </div>
+            
+            <div class="decoracion">❤ ❤ ❤</div>
+            
+            <div class="parrafo">
+                Prometo [promesas específicas]. Prometo estar a tu lado en cada aventura, celebrar contigo cada triunfo, y ser tu apoyo en los momentos difíciles. Prometo amarte con la misma intensidad de hoy, pero creciendo cada día más.
+            </div>
+            
+            <div class="parrafo">
+                Esta carta es solo una pequeña muestra de todo lo que siento por ti. Las palabras se quedan cortas para expresar la inmensidad de mi amor, pero espero que puedas sentir en cada línea la sinceridad de mi corazón.
+            </div>
+        </div>
+        
+        <div class="despedida">
+            <div class="despedida-texto">
+                Con todo mi amor,
+            </div>
+            <div class="firma">
+                ❤️ Esteban Sanchez Meza ❤️ 
+            </div>
+        </div>
+        <div class="decoracion">❤ ❤ ❤</div>
+
+    <!-- El div extra se elimina aquí -->
+
+    <div class="foto-seccion" style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 1px solid #ecf0f1;">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-KJoF2n5E8k0dAxfC7MhXtIVTSTnN0O.png" alt="Nuestra foto especial" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); margin-bottom: 15px;">
+        <div style="font-family: 'Dancing Script', cursive; font-size: 18px; color: #000000; font-style: italic;">
+            ❤️❤️❤️ 10 de Junio, 2025 ❤️❤️❤️
+        </div>
+        <div style="font-family: 'Crimson Text', serif; font-size: 16px; color: #2c3e50;">
+            Esta foto captura un momento especial que siempre atesoraré. Espero que podamos crear muchos más recuerdos juntos.
+    </div>
+</div>
+</body>
+</html>
     <div class="heart-container">
         <div class="heart"></div>
         <div class="text">Esteban esta terminando de programarlo JKDSJKDJSDJS TE AMO MI VIDA</div>
