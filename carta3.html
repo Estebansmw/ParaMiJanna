@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Janna, con amor</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8e1e7;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            flex-direction: column;
+            text-align: center;
+            color: #d1416e;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .heart {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+            transform-origin: center;
+            animation: pulse 1.5s infinite;
+            outline: none;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 75px;
+            height: 120px;
+            background: #e94d75;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .heart::before {
+            left: 75px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .message {
+            position: absolute;
+            font-size: 1.5em;
+            opacity: 0;
+            transform: translateY(0);
+            transition: opacity 1s, transform 1s;
+            color: #fff;
+            background-color: #e94d75;
+            padding: 10px 20px;
+            border-radius: 20px;
+            white-space: nowrap;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .message.show {
+            opacity: 1;
+            transform: translateY(-100px);
+        }
+
+        .counter {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #b23a5a;
+        }
+
+        .clear-btn {
+            margin-top: 10px;
+            padding: 8px 18px;
+            background: #e94d75;
+            color: #fff;
+            border: none;
+            border-radius: 15px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .clear-btn:hover {
+            background: #d1416e;
+        }
+    </style>
+</head>
+<body>
+    <h1>Para mi amada Janna</h1>
+    <div class="heart" tabindex="0" aria-label="Corazón animado, haz clic, toca o presiona Enter/Espacio para mostrar un mensaje"></div>
+    <div class="counter" id="counter"></div>
+    <button class="clear-btn" onclick="clearMessages()">Limpiar mensajes</button>
+    <script>
+        // Mensajes originales
+        const originalMessages = [
+            "ERES LA MUJER MÁS BELLA DEL MUNDO.",
+            "Amo tus ojos verdes, tu sonrisa y tu risa.",
+            "Gracias por iluminar mi vida.",
+            "Te amo con todo mi corazón mi amor Janna.",
+            "Siempre estaré aquí para ti.",
+            "Eres mi razón de ser feliz.",
+            "Cada día a tu lado es un regalo.",
+            "Tu amor me inspira a ser mejor.",
+            "Eres mi sol en los días nublados.",
+            "Eres mi significado de amor.",
+            "Eres la dueña de mi corazón.",
+            "Tu amor es mi mayor tesoro.",
+            "La dueña de mis quincenas",
+            "Eres mi musa, mi inspiración.",
+            "TE AMOO JANNITA PRECIOSAAAAAAAA.",
+            "Eres la razón por la que sonrío cada día."
+        ];
+
+        let messages = [];
+        let clickCount = 0;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function refillMessages() {
+            messages = [...originalMessages];
+            shuffle(messages);
+        }
+
+        function updateCounter() {
+            document.getElementById('counter').textContent = 
+                `Veces presionado: ${clickCount}`;
+        }
+
+        function showMessage() {
+            if (messages.length === 0) refillMessages();
+            const messageText = messages.pop();
+            // Solo aumentamos el contador de clicks/toques
+            clickCount++;
+            updateCounter();
+
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.textContent = messageText;
+
+            // Mejor posicionamiento: círculo alrededor del corazón
+            const heart = document.querySelector('.heart');
+            const heartRect = heart.getBoundingClientRect();
+            const angle = Math.random() * 2 * Math.PI;
+            const radius = 120 + Math.random() * 40; // Distancia desde el centro del corazón
+
+            const posX = heartRect.left + heartRect.width / 2 + Math.cos(angle) * radius;
+            const posY = heartRect.top + heartRect.height / 2 + Math.sin(angle) * radius;
+
+            messageElement.style.left = `${posX}px`;
+            messageElement.style.top = `${posY}px`;
+
+            document.body.appendChild(messageElement);
+
+            setTimeout(() => {
+                messageElement.classList.add('show');
+            }, 10);
+
+            setTimeout(() => {
+                messageElement.classList.remove('show');
+                messageElement.addEventListener('transitionend', () => {
+                    messageElement.remove();
+                });
+            }, 3000);
+        }
+
+        // Accesibilidad: activar con teclado
+        const heart = document.querySelector('.heart');
+        heart.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                showMessage();
+            }
+        });
+        // Soporte para click y toque en móvil
+        heart.addEventListener('click', showMessage);
+        heart.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Evita doble disparo en algunos navegadores
+            showMessage();
+        });
+
+        // Inicialización
+        refillMessages();
+        updateCounter();
+
+        // Limpiar mensajes flotantes
+        function clearMessages() {
+            document.querySelectorAll('.message').forEach(el => el.remove());
+            clickCount = 0;
+            updateCounter();
+            refillMessages();
+        }
+    </script>
+</body>
+
+</html></html>
